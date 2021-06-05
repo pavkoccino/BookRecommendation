@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>{{book.book_title}}</title>
+
+</head>
+
+<body>
+<div class="container">
+    <br/><br/>
+    <h2 class="text-center"> {{book.book_title}}</h2>
+    <hr>
+    <p class="lead">Author: {{book.book_author}} </p>
+    <p class="lead">ISBN: {{book.book_isbn}} </p>
+    <p class="lead">Year: {{book.book_year_pub}} </p>
+    <p class="lead">Publication: {{book.book_publisher}} </p>
+    <div id="my_table"> {{ correlations | safe }} </div>
+    <br/>
+    <form action="{% url 'home' %}" class="form-inline" method="get">
+        <button type="submit" class="btn btn-success">Back</button>
+    </form>
+
+</div>
+
+</body>
+
+</html>

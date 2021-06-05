@@ -1,0 +1,44 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>What to read next?</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'RootDir/style.css' %}">
+</head>
+<body>
+<h2>Search your favourite book and get recommendation for further reading</h2>
+
+<div class="container">
+    <div class="d-flex align-items-center justify-content-center">
+        <br/>
+        <form action="{% url 'search' %}" class="form-inline" method="get">
+            <div class="form-group mx-sm-3 mb-2 form-group-lg">
+                <label for="" class="sr-only">search</label>
+                <input name="search" class="form-control input-lg" id="input-lg" placeholder="e.g. Harry Potter" size="50" required="required">
+            </div>
+            <button type="submit" class="btn btn-success mb-2">Search</button>
+        </form>
+        <br/>
+        {% for x in book %}
+            <h3> <a href="{{ x.get_url }}">{{x.book_name}}</a></h3>
+            <p class="lead">by {{x.author_name}}</p>
+            <p class="lead">{{x.book_isbn}}</p>
+            <hr>
+        {% endfor %}
+    </div>
+</div>
+
+<div style ="position: absolute; bottom: 15px;right:15px;">
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class = "btn btn-dark btn-sm" name="run_script">Download data, transform it and save it to DB</button>
+    </form>
+</div>
+
+</body>
+</html>
